@@ -30,7 +30,7 @@
                         <h4><%= posts[i].제목 %></h4>
                         <p><%= posts[i].날짜 %></p>
                         <button class="btn btn-danger delete" data-id="<%= posts[i]._id %>">삭제</button>
-                        <!--<button class="btn btn-danger delete" data-id="<%= posts[i]._id %>">수정</button>-->
+                        <button class="btn btn-danger edit" data-id="<%= posts[i]._id %>">수정</button>
                     </li>
                 <% } %>
             </ul>
@@ -41,8 +41,8 @@
         <script>
 
             $('.delete').click(function (e) {
-                var iNum = e.target.dataset.id;
-                var det = $(this);
+                const iNum = e.target.dataset.id;
+                const det = $(this);
 
                 $
                     .ajax({
@@ -61,6 +61,12 @@
                     .fail(function (xhr, testStatus, errorThrown) {
                         console.log(xhr, testStatus, errorThrown)
                     })
+            })
+
+            $('.edit').click(function (e) {
+                const id = e.target.dataset.id;
+                window.location.href = `/edit/${id}`;
+                    
             })
         </script>
 
